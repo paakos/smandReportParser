@@ -1,0 +1,51 @@
+table 'SalesLT CreditCards'
+	lineageTag: 34ea25bd-e36a-4d64-bc4e-ad9e05afdc6a
+
+	column Id
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: f33796ad-9f17-4668-9db7-ce159f2a1d3e
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreditCardnumber
+		dataType: string
+		sourceProviderType: varchar(16)
+		lineageTag: 9d5e62bc-1562-4d66-a60f-eb42f75cc738
+		summarizeBy: none
+		sourceColumn: CreditCardnumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerName
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: da7d1c1d-33b1-4066-86e3-145855ea5692
+		summarizeBy: none
+		sourceColumn: OwnerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column OwnerSubname
+		dataType: string
+		sourceProviderType: varchar(50)
+		lineageTag: a77d78ad-330d-48b9-a25a-82f92b57b32a
+		summarizeBy: none
+		sourceColumn: OwnerSubname
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT CreditCards' = m
+		mode: directQuery
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks", [EnableCrossDatabaseFolding = true]),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "CreditCards"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

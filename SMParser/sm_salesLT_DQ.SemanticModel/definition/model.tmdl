@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["SalesLT Address","SalesLT CreditCards","SalesLT Customer","SalesLT CustomerAddress","SalesLT Product","SalesLT ProductCategory","SalesLT ProductDescription","SalesLT ProductModel","SalesLT ProductModelProductDescription","SalesLT SalesOrderDetail","SalesLT SalesOrderHeader"]
+
+ref table 'SalesLT Address'
+ref table 'SalesLT CreditCards'
+ref table 'SalesLT Customer'
+ref table 'SalesLT CustomerAddress'
+ref table 'SalesLT Product'
+ref table 'SalesLT ProductCategory'
+ref table 'SalesLT ProductDescription'
+ref table 'SalesLT ProductModel'
+ref table 'SalesLT ProductModelProductDescription'
+ref table 'SalesLT SalesOrderDetail'
+ref table 'SalesLT SalesOrderHeader'
+
+ref cultureInfo en-US
+
