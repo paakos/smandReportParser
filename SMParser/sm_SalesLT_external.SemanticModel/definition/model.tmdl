@@ -1,0 +1,41 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["SalesLT Address","SalesLT CreditCards","SalesLT Customer","SalesLT CustomerAddress","SalesLT Product","SalesLT ProductCategory","SalesLT ProductDescription","SalesLT ProductModel","SalesLT ProductModelProductDescription","SalesLT SalesOrderDetail","SalesLT SalesOrderHeader"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table 'SalesLT Address'
+ref table DateTableTemplate_805f34b8-a937-4d5e-85b7-da1f0a1e1698
+ref table LocalDateTable_01b44555-0f12-4d01-928b-2b79d110e5d6
+ref table 'SalesLT CreditCards'
+ref table 'SalesLT Customer'
+ref table LocalDateTable_d2f21434-1655-466b-bb3d-464c5fa87aa2
+ref table 'SalesLT CustomerAddress'
+ref table LocalDateTable_13844577-30de-46ad-b01e-f6c72a6b92b1
+ref table 'SalesLT Product'
+ref table LocalDateTable_2df4226a-ec01-43ce-b0a8-ab0e69d18d25
+ref table LocalDateTable_46810dd4-5113-4183-8609-0f8eccb14faf
+ref table LocalDateTable_cf151d47-baee-46a6-8465-3d0d600f25ea
+ref table LocalDateTable_489f8b09-5acb-4b4e-a639-2b48d04b886f
+ref table 'SalesLT ProductCategory'
+ref table LocalDateTable_e2a4f5be-7711-4c97-9729-4768b2827aeb
+ref table 'SalesLT ProductDescription'
+ref table LocalDateTable_7ac81620-8643-49f9-9d33-76227d7d6c97
+ref table 'SalesLT ProductModel'
+ref table LocalDateTable_3f227bda-bd74-4403-8691-ceba50084e38
+ref table 'SalesLT ProductModelProductDescription'
+ref table LocalDateTable_73c69bb2-eca5-4759-84da-440b4a556d5d
+ref table 'SalesLT SalesOrderDetail'
+ref table LocalDateTable_252ce693-9a31-4cf3-be7d-1a4f7e26a31e
+ref table 'SalesLT SalesOrderHeader'
+ref table LocalDateTable_8517b1b9-e68d-4e15-a5ce-297f7fcb43e7
+ref table LocalDateTable_daf014b2-74c4-4b0d-a4c2-ad8183a50875
+ref table LocalDateTable_5e2e1f85-ea41-4bf3-a118-808c56afdcf1
+ref table LocalDateTable_0fa953c6-79ae-4307-ab60-619d9eea5c07
+

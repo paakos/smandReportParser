@@ -1,0 +1,53 @@
+table 'SalesLT ProductDescription'
+	lineageTag: 0a8a6095-e034-4d9e-8ab8-403936c853c0
+
+	column ProductDescriptionID
+		dataType: int64
+		formatString: 0
+		lineageTag: cbecff66-0d43-48ba-ae85-eb7a002ed335
+		summarizeBy: none
+		sourceColumn: ProductDescriptionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 44f4cd4c-d924-4587-8806-b4c0b5fd2c67
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: ff2dd1aa-1f29-4599-812d-599684c2318c
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7e304d1b-e8b2-4648-9e51-f11da23981ca
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: f41c212e-59fa-4257-8abe-3d2d3872a03f
+			defaultHierarchy: LocalDateTable_7ac81620-8643-49f9-9d33-76227d7d6c97.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT ProductDescription' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks"),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "ProductDescription"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,62 @@
+table 'SalesLT ProductCategory'
+	lineageTag: 0bb1480a-0081-4e78-806c-5886a5197d8f
+
+	column ProductCategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 52977ace-cc7f-4c67-9c00-6eb90d445334
+		summarizeBy: none
+		sourceColumn: ProductCategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParentProductCategoryID
+		dataType: int64
+		formatString: 0
+		lineageTag: 96d50ecc-4e13-400d-a806-dc1041689d49
+		summarizeBy: count
+		sourceColumn: ParentProductCategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: fecef1ea-69e6-43d2-9771-4e4afea16791
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: 9373e030-adc4-45a7-add5-f1450bc80644
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a496ad5a-04dc-467d-8417-db1373d60823
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 9fc78ac9-5d85-46d9-908d-9ff2b0df8bf2
+			defaultHierarchy: LocalDateTable_e2a4f5be-7711-4c97-9729-4768b2827aeb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT ProductCategory' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks"),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "ProductCategory"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

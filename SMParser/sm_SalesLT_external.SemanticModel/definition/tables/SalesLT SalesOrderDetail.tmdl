@@ -1,0 +1,104 @@
+table 'SalesLT SalesOrderDetail'
+	lineageTag: a5176ca6-1c4b-4a7e-83e7-706fd051eda2
+
+	column SalesOrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: b7ca339f-b423-4abe-ad20-8ef153d26171
+		summarizeBy: none
+		sourceColumn: SalesOrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderDetailID
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c9c9f78-5a35-4c3d-8e85-0926ea51a904
+		summarizeBy: count
+		sourceColumn: SalesOrderDetailID
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQty
+		dataType: int64
+		formatString: 0
+		lineageTag: 361fe646-6083-441a-9038-7f0c4bc45533
+		summarizeBy: sum
+		sourceColumn: OrderQty
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: ce141ccc-a30d-42a3-a276-808f375492a7
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c1d2e358-647a-4410-a814-69b8ada544d9
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column UnitPriceDiscount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d8961d3b-1fae-40f6-9650-c714239fe1df
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column LineTotal
+		dataType: double
+		lineageTag: 075a3ae9-0621-4606-96a7-14ef8efe6eb5
+		summarizeBy: sum
+		sourceColumn: LineTotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rowguid
+		dataType: string
+		lineageTag: 25d46bb3-c845-49ef-8d5c-1fc06c36e0a8
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fe12d49b-86f1-4d67-87c6-752f867f6434
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: 4a2d314a-e85d-4beb-b30f-25f77d72ec56
+			defaultHierarchy: LocalDateTable_252ce693-9a31-4cf3-be7d-1a4f7e26a31e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT SalesOrderDetail' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks"),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "SalesOrderDetail"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+
