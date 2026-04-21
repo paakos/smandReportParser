@@ -1,0 +1,62 @@
+table 'SalesLT CustomerAddress'
+	lineageTag: 2520b4da-35e4-4a70-93cb-f463d90ae242
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f57f155-b3a4-439a-bf44-6f04119bea76
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressID
+		dataType: int64
+		formatString: 0
+		lineageTag: ce8ee288-63bf-45a3-a0e0-05b8ff7a6858
+		summarizeBy: none
+		sourceColumn: AddressID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressType
+		dataType: string
+		lineageTag: d8637f48-4af7-4e05-93a3-4ae464305686
+		summarizeBy: none
+		sourceColumn: AddressType
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		lineageTag: c2166cf5-2aa8-41bd-bf96-d0f75ddba88f
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c7544733-7fd7-4be2-80c0-ef7c9f4da1f8
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		variation Variation
+			isDefault
+			relationship: c0a2c3e5-c344-4268-9b7b-2a764838f0ef
+			defaultHierarchy: LocalDateTable_13844577-30de-46ad-b01e-f6c72a6b92b1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT CustomerAddress' = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks"),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "CustomerAddress"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,65 @@
+table 'SalesLT ProductModel'
+	lineageTag: 158eeafd-2743-4bd5-abc2-f552423c85f3
+
+	column ProductModelID
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: a6a18276-d5fe-4f61-80e9-c229f7efa998
+		summarizeBy: none
+		sourceColumn: ProductModelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		isNullable: false
+		sourceProviderType: nvarchar(50)
+		lineageTag: 27238e15-1bf3-45b4-be29-c4787810015e
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column CatalogDescription
+		dataType: string
+		sourceProviderType: xml
+		lineageTag: 30ddede6-1c9b-43e0-b653-e31de84c9842
+		summarizeBy: none
+		sourceColumn: CatalogDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column rowguid
+		dataType: string
+		isNullable: false
+		sourceProviderType: uniqueidentifier
+		lineageTag: cf72bc4f-630c-482a-b28c-c9493b350cb9
+		summarizeBy: none
+		sourceColumn: rowguid
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModifiedDate
+		dataType: dateTime
+		isNullable: false
+		formatString: General Date
+		sourceProviderType: datetime
+		lineageTag: c8bf2eda-b35e-48bc-b106-1dbcca1f6068
+		summarizeBy: none
+		sourceColumn: ModifiedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'SalesLT ProductModel' = m
+		mode: directQuery
+		source =
+				let
+				  Source = Sql.Database("paakos4.database.windows.net", "advwrks", [EnableCrossDatabaseFolding = true]),
+				  #"Navigation 1" = Source{[Schema = "SalesLT", Item = "ProductModel"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

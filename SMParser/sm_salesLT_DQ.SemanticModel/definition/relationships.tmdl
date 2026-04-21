@@ -1,0 +1,67 @@
+relationship de7b4357-eb05-4c85-afa9-fa18ec6234a1
+	fromColumn: 'SalesLT CustomerAddress'.AddressID
+	toColumn: 'SalesLT Address'.AddressID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 711a7b92-894b-42ed-852b-3f3b8143f072
+	fromColumn: 'SalesLT CustomerAddress'.CustomerID
+	toColumn: 'SalesLT Customer'.CustomerID
+
+	annotation PBI_IsFromSource = FS
+
+relationship dda5dc4a-931f-4bd5-ab8a-ff482c3e0fb4
+	fromColumn: 'SalesLT Product'.ProductCategoryID
+	toColumn: 'SalesLT ProductCategory'.ProductCategoryID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 20c0cc6a-2f14-4810-a99a-97af64418aeb
+	fromColumn: 'SalesLT Product'.ProductModelID
+	toColumn: 'SalesLT ProductModel'.ProductModelID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 5165dbfc-3898-47e8-ac40-2948694b28d9
+	fromColumn: 'SalesLT ProductModelProductDescription'.ProductDescriptionID
+	toColumn: 'SalesLT ProductDescription'.ProductDescriptionID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4c3facf7-10de-4d43-b886-1260d5766868
+	fromColumn: 'SalesLT ProductModelProductDescription'.ProductModelID
+	toColumn: 'SalesLT ProductModel'.ProductModelID
+
+	annotation PBI_IsFromSource = FS
+
+relationship f254ccf3-00be-4845-80b1-d38daf7d5aa3
+	fromColumn: 'SalesLT SalesOrderDetail'.ProductID
+	toColumn: 'SalesLT Product'.ProductID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4ba82809-463c-4177-ae31-0fb2dd00d5f9
+	fromColumn: 'SalesLT SalesOrderDetail'.SalesOrderID
+	toColumn: 'SalesLT SalesOrderHeader'.SalesOrderID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 4b8297a0-6031-48ac-95b7-92208969ff83
+	fromColumn: 'SalesLT SalesOrderHeader'.BillToAddressID
+	toColumn: 'SalesLT Address'.AddressID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 981471c9-9e5e-438b-bda7-8f83aa29f69f
+	isActive: false
+	fromColumn: 'SalesLT SalesOrderHeader'.ShipToAddressID
+	toColumn: 'SalesLT Address'.AddressID
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1f16732f-6083-4e1f-9923-2e4cbbed300a
+	fromColumn: 'SalesLT SalesOrderHeader'.CustomerID
+	toColumn: 'SalesLT Customer'.CustomerID
+
+	annotation PBI_IsFromSource = FS
+
